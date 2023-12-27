@@ -568,6 +568,7 @@ require('which-key').register {
   ['<leader>s'] = { name = '[S]earch', _ = 'which_key_ignore' },
   ['<leader>t'] = { name = '[T]oggle', _ = 'which_key_ignore' },
   ['<leader>w'] = { name = '[W]orkspace', _ = 'which_key_ignore' },
+  ['<leader>p'] = { name = '[P]roject', _ = 'which_key_ignore' },
 }
 -- register which-key VISUAL mode
 -- required for visual <leader>hs (hunk stage) to work
@@ -591,13 +592,6 @@ require('mason-lspconfig').setup()
 --  define the property 'filetypes' to the map in question.
 local servers = {
   clangd = {
-    filetypes = { 'c', 'cpp' },
-    settings = {
-      clangd = {
-        -- NOTE: toggle below to ignore clangd's noisy `missing-noreturn` warnings
-        -- diagnostics = { extraArgs = { '-Wno-missing-noreturn' } },
-      },
-    },
   },
   -- gopls = {},
   -- pyright = {},
