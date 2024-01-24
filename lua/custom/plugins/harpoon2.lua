@@ -1,11 +1,11 @@
 return {
     "theprimeagen/harpoon",
     branch = "harpoon2",
-    dependencies = {"nvim-lua/plenary.nvim"},
+    dependencies = { "nvim-lua/plenary.nvim" },
     config = function()
         require("harpoon"):setup()
     end,
-    keys = {{
+    keys = { {
         "<leader>ha",
         function()
             require("harpoon"):list():append()
@@ -23,24 +23,24 @@ return {
         function()
             require("harpoon"):list():select(1)
         end,
-        desc = "harpoon to file 1"
+        desc = "[H]arpoon to file 1"
     }, {
         "<leader>2",
         function()
             require("harpoon"):list():select(2)
         end,
-        desc = "harpoon to file 2"
+        desc = "[H]arpoon to file 2"
     }, {
         "<leader>3",
         function()
             require("harpoon"):list():select(3)
         end,
-        desc = "harpoon to file 3"
+        desc = "[H]arpoon to file 3"
     }, {
         "<leader>4",
         function()
             require("harpoon"):list():select(4)
         end,
-        desc = "harpoon to file 4"
-    }}
+        desc = "[H]arpoon to file 4"
+    } }
 }

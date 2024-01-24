@@ -176,12 +176,12 @@ require('lazy').setup({
           gs.reset_hunk { vim.fn.line '.', vim.fn.line 'v' }
         end, { desc = 'reset git hunk' })
         -- normal mode
-        map('n', '<leader>gs', gs.stage_hunk, { desc = '[g]it stage hunk' })
-        map('n', '<leader>gr', gs.reset_hunk, { desc = '[g]it reset hunk' })
-        map('n', '<leader>gS', gs.stage_buffer, { desc = '[g]it Stage buffer' })
+        map('n', '<leader>gs', gs.stage_hunk, { desc = '[g]it [s]tage hunk' })
+        map('n', '<leader>gr', gs.reset_hunk, { desc = '[g]it [r]eset hunk' })
+        map('n', '<leader>gS', gs.stage_buffer, { desc = '[g]it [S]tage buffer' })
         map('n', '<leader>gu', gs.undo_stage_hunk, { desc = '[u]ndo stage [g]it hunk' })
-        map('n', '<leader>gR', gs.reset_buffer, { desc = '[g]it Reset buffer' })
-        map('n', '<leader>gp', gs.preview_hunk, { desc = 'preview [g]it hunk' })
+        map('n', '<leader>gR', gs.reset_buffer, { desc = '[g]it [R]eset buffer' })
+        map('n', '<leader>gp', gs.preview_hunk, { desc = '[p]review [g]it hunk' })
         map('n', '<leader>gb', function()
           gs.blame_line { full = false }
         end, { desc = 'git blame line' })
@@ -201,7 +201,6 @@ require('lazy').setup({
   },
 
   {
-    -- Theme inspired by Atom
     'folke/tokyonight.nvim',
     priority = 1000,
     lazy = false,
@@ -498,15 +497,6 @@ vim.defer_fn(function()
           ['[]'] = '@class.outer',
         },
       },
-      swap = {
-        enable = true,
-        swap_next = {
-          ['<leader>a'] = '@parameter.inner',
-        },
-        swap_previous = {
-          ['<leader>A'] = '@parameter.inner',
-        },
-      },
     },
   }
 end, 0)
@@ -546,11 +536,6 @@ local on_attach = function(_, bufnr)
 
   -- Lesser used LSP functionality
   nmap('gD', vim.lsp.buf.declaration, '[G]oto [D]eclaration')
-  nmap('<leader>wa', vim.lsp.buf.add_workspace_folder, '[W]orkspace [A]dd Folder')
-  nmap('<leader>wr', vim.lsp.buf.remove_workspace_folder, '[W]orkspace [R]emove Folder')
-  nmap('<leader>wl', function()
-    print(vim.inspect(vim.lsp.buf.list_workspace_folders()))
-  end, '[W]orkspace [L]ist Folders')
 
   -- Create a command `:Format` local to the LSP buffer
   vim.api.nvim_buf_create_user_command(bufnr, 'Format', function(_)
@@ -567,7 +552,6 @@ require('which-key').register {
   ['<leader>r'] = { name = '[R]ename', _ = 'which_key_ignore' },
   ['<leader>s'] = { name = '[S]earch', _ = 'which_key_ignore' },
   ['<leader>t'] = { name = '[T]oggle', _ = 'which_key_ignore' },
-  ['<leader>w'] = { name = '[W]orkspace', _ = 'which_key_ignore' },
   ['<leader>p'] = { name = '[P]roject', _ = 'which_key_ignore' },
 }
 -- register which-key VISUAL mode
