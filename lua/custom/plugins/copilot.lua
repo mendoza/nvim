@@ -1,8 +1,5 @@
+-- not really sure why, but this lets copilot work with my keybinds
+vim.g.copilot_assume_mapped = true
 return {
-  "zbirenbaum/copilot.lua",
-  cmd = "Copilot",
-  event = "InsertEnter",
-  config = function()
-    require("copilot").setup({})
-  end,
+  "github/copilot.vim",
 }
