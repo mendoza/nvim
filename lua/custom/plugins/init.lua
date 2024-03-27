@@ -8,4 +8,5 @@ vim.keymap.set('n', '<c-u>', '<c-u>zz')
 
 return {
   { 'github/copilot.vim' },
+  { 'tpope/vim-fugitive' },
 }
