@@ -3,6 +3,7 @@
 --
 -- See the kickstart.nvim README for more information
 
+-- Note: centering the screen after scrolling
 vim.keymap.set('n', '<c-d>', '<c-d>zz')
 vim.keymap.set('n', '<c-u>', '<c-u>zz')
 
