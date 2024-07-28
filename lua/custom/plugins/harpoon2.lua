@@ -2,51 +2,54 @@ return {
   'theprimeagen/harpoon',
   branch = 'harpoon2',
   dependencies = { 'nvim-lua/plenary.nvim' },
-  config = function()
-    local harpoon = require 'harpoon'
-    harpoon:setup {}
-    vim.keymap.set('n', '<leader>a', function()
-      harpoon:list():add()
-    end)
-    vim.keymap.set('n', '<C-e>', function()
-      harpoon.ui:toggle_quick_menu(harpoon:list())
-    end)
-    vim.keymap.set('n', '<C-h>', function()
-      harpoon:list():select(1)
-    end)
-    vim.keymap.set('n', '<C-j>', function()
-      harpoon:list():select(2)
-    end)
-    vim.keymap.set('n', '<C-k>', function()
-      harpoon:list():select(3)
-    end)
-    vim.keymap.set('n', '<C-l>', function()
-      harpoon:list():select(4)
-    end)
-  end,
+  config = true,
   keys = {
     {
       '<leader>a',
+      function()
+        local harpoon = require 'harpoon'
+        harpoon:list():add()
+      end,
       desc = 'Harpoon [a]ppend file',
     },
     {
       '<C-e>',
+      function()
+        local harpoon = require 'harpoon'
+        harpoon.ui:toggle_quick_menu(harpoon:list())
+      end,
       desc = '[H]arpoon quick [m]enu',
     },
     {
       '<C-h>',
+      function()
+        local harpoon = require 'harpoon'
+        harpoon:list():select(1)
+      end,
       desc = 'Select Harpoon 1',
     },
     {
       '<C-j>',
+      function()
+        local harpoon = require 'harpoon'
+        harpoon:list():select(2)
+      end,
       desc = 'Select Harpoon 2',
     },
     {
       '<C-k>',
+      function()
+        local harpoon = require 'harpoon'
+        harpoon:list():select(3)
+      end,
       desc = 'Select Harpoon 3',
     },
     {
       '<C-l>',
+      function()
+        local harpoon = require 'harpoon'
+        harpoon:list():select(4)
+      end,
       desc = 'Select Harpoon 4',
     },
   },
