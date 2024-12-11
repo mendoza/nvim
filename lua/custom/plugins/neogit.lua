@@ -7,15 +7,20 @@ return {
     'nvim-telescope/telescope.nvim', -- optional
     -- 'ibhagwan/fzf-lua', -- optional
   },
-  config = true,
-  keys = {
-    {
-      '<leader>gc',
+  config = function()
+    local neogit = require 'neogit'
+    neogit:setup()
+
+    local wk = require 'which-key'
+    wk.add {
+      '<leader>g',
       function()
-        local neogit = require 'neogit'
-        neogit.open { cmd = 'commit', kind = 'split' }
+        neogit.open { kind = 'vsplit' }
       end,
-      desc = '[G]it [C]ommit',
-    },
-  },
+      {
+        desc = 'Open Neogit',
+        group = '[G]it',
+      },
+    }
+  end,
 }
