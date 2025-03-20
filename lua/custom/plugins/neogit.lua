@@ -9,7 +9,7 @@ return {
   },
   config = function()
     local neogit = require 'neogit'
-    neogit:setup()
+    neogit.setup {}
 
     local wk = require 'which-key'
     wk.add {
