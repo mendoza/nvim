@@ -31,38 +31,26 @@ return {
       return false
     end
 
-    local function get_formatters(formatters_to_check, fallback_order, buf)
-      local filepath = vim.api.nvim_buf_get_name(buf) 
+    local function get_first_configured_formatter(fallback_order, buf)
+      local filepath = vim.api.nvim_buf_get_name(buf)
       if filepath == '' then
-        return fallback_order or formatters_to_check
-      end 
+        return fallback_order
+      end
 
-      for _, formatter in ipairs(formatters_to_check) do
+      for _, formatter in ipairs(fallback_order) do
         if has_config_file(formatter, filepath) then
           return { formatter }
         end
       end
-      return fallback_order or formatters_to_check
+      return fallback_order
     end
 
     local formatters = {
       lua = function(buf)
-        return get_formatters({ 'stylua' }, { 'stylua' }, buf)
+        return get_first_configured_formatter({ 'stylua' }, buf)
       end,
       javascript = function(buf)
-        return get_formatters({ 'prettier', 'biome' }, { 'prettier', 'biome' }, buf)
-      end,
-      typescript = function(buf)
-        return get_formatters({ 'prettier', 'biome' }, { 'prettier', 'biome' }, buf)
-      end,
-      typescriptreact = function(buf)
-        return get_formatters({ 'prettier', 'biome' }, { 'prettier', 'biome' }, buf)
-      end,
-      javascriptreact = function(buf)
-        return get_formatters({ 'prettier', 'biome' }, { 'prettier', 'biome' }, buf)
-      end,
-      svelte = function(buf)
-        return get_formatters({ 'prettier', 'biome' }, { 'prettier', 'biome' }, buf)
+        return get_first_configured_formatter({ 'prettier', 'biome' }, buf)
       end,
     }
 
