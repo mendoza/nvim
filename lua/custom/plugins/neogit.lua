@@ -1,21 +1,30 @@
 return {
   'NeogitOrg/neogit',
   dependencies = {
-    'nvim-lua/plenary.nvim', -- required
-    'sindrets/diffview.nvim', -- optional - Diff integration
-    -- Only one of these is needed, not both.
-    'nvim-telescope/telescope.nvim', -- optional
-    -- 'ibhagwan/fzf-lua', -- optional
+    'nvim-lua/plenary.nvim',
+    'sindrets/diffview.nvim',
+    'nvim-telescope/telescope.nvim',
   },
   config = function()
     local neogit = require 'neogit'
-    neogit.setup {}
+    local diffview = require 'diffview'
+    neogit.setup {
+      kind = 'floating',
+    }
+
+    diffview.setup {
+      view = {
+        merge_tool = {
+          layout = 'diff3_mixed',
+        },
+      },
+    }
 
     local wk = require 'which-key'
     wk.add {
       '<leader>g',
       function()
-        neogit.open { kind = 'vsplit' }
+        neogit.open {}
       end,
       {
         desc = 'Open Neogit',
