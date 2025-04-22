@@ -9,7 +9,7 @@ return {
     local neogit = require 'neogit'
     local diffview = require 'diffview'
     neogit.setup {
-      kind = 'floating',
+      kind = 'vsplit',
     }
 
     diffview.setup {
