@@ -13,36 +13,53 @@ vim.opt.fileformats = 'unix,dos'
 return {
   { 'github/copilot.vim' },
   {
-    'yetone/avante.nvim',
-    event = 'VeryLazy',
-    version = false,
+    "olimorris/codecompanion.nvim",
     opts = {
-      provider = 'copilot',
+      adapter = 'copilot'
     },
-    build = (function()
-      if vim.loop.os_uname().sysname == "Windows_NT" then
-        return 'powershell -ExecutionPolicy Bypass -File Build.ps1 -BuildFromSource false'
-      else
-        return 'make'
-      end
-    end)(),
     dependencies = {
-      'nvim-treesitter/nvim-treesitter',
-      'stevearc/dressing.nvim',
-      'nvim-lua/plenary.nvim',
-      'MunifTanjim/nui.nvim',
-      'nvim-telescope/telescope.nvim',
-      'hrsh7th/nvim-cmp',
-      'nvim-tree/nvim-web-devicons',
+      "nvim-lua/plenary.nvim",
+      "nvim-treesitter/nvim-treesitter",
       {
         'MeanderingProgrammer/render-markdown.nvim',
         opts = {
-          file_types = { 'markdown', 'Avante' },
+          file_types = { 'markdown', 'codecompanion' },
         },
-        ft = { 'markdown', 'Avante' },
+        ft = { 'markdown', 'codecompanion' },
       },
     },
   },
+  -- {
+  --   'yetone/avante.nvim',
+  --   event = 'VeryLazy',
+  --   version = false,
+  --   opts = {
+  --     provider = 'copilot',
+  --   },
+  --   build = (function()
+  --     if vim.loop.os_uname().sysname == "Windows_NT" then
+  --       return 'powershell -ExecutionPolicy Bypass -File Build.ps1 -BuildFromSource false'
+  --     else
+  --       return 'make'
+  --     end
+  --   end)(),
+  --   dependencies = {
+  --     'nvim-treesitter/nvim-treesitter',
+  --     'stevearc/dressing.nvim',
+  --     'nvim-lua/plenary.nvim',
+  --     'MunifTanjim/nui.nvim',
+  --     'nvim-telescope/telescope.nvim',
+  --     'hrsh7th/nvim-cmp',
+  --     'nvim-tree/nvim-web-devicons',
+  --     {
+  --       'MeanderingProgrammer/render-markdown.nvim',
+  --       opts = {
+  --         file_types = { 'markdown', 'Avante' },
+  --       },
+  --       ft = { 'markdown', 'Avante' },
+  --     },
+  --   },
+  -- },
   {
     'stevearc/conform.nvim',
     opts = function(_, opts)
