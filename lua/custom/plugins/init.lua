@@ -13,19 +13,29 @@ vim.opt.fileformats = 'unix,dos'
 return {
   { 'github/copilot.vim' },
   {
-    "olimorris/codecompanion.nvim",
+    'olimorris/codecompanion.nvim',
     opts = {
-      adapter = 'copilot'
+      adapter = 'copilot',
     },
     dependencies = {
-      "nvim-lua/plenary.nvim",
-      "nvim-treesitter/nvim-treesitter",
+      'nvim-lua/plenary.nvim',
+      'nvim-treesitter/nvim-treesitter',
       {
         'MeanderingProgrammer/render-markdown.nvim',
         opts = {
           file_types = { 'markdown', 'codecompanion' },
         },
         ft = { 'markdown', 'codecompanion' },
+      },
+    },
+    keys = {
+      {
+        '<leader>cc',
+        function()
+          local cc = require('codecompanion');
+          cc.toggle()
+        end,
+        desc = '[C]ode=[C]ompanion Chat',
       },
     },
   },
