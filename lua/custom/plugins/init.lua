@@ -13,63 +13,36 @@ vim.opt.fileformats = 'unix,dos'
 return {
   { 'github/copilot.vim' },
   {
-    'olimorris/codecompanion.nvim',
+    'yetone/avante.nvim',
+    event = 'VeryLazy',
+    version = false,
     opts = {
-      adapter = 'copilot',
+      provider = 'copilot',
     },
+    build = (function()
+      if vim.loop.os_uname().sysname == "Windows_NT" then
+        return 'powershell -ExecutionPolicy Bypass -File Build.ps1 -BuildFromSource false'
+      else
+        return 'make'
+      end
+    end)(),
     dependencies = {
-      'nvim-lua/plenary.nvim',
       'nvim-treesitter/nvim-treesitter',
+      'stevearc/dressing.nvim',
+      'nvim-lua/plenary.nvim',
+      'MunifTanjim/nui.nvim',
+      'nvim-telescope/telescope.nvim',
+      'hrsh7th/nvim-cmp',
+      'nvim-tree/nvim-web-devicons',
       {
         'MeanderingProgrammer/render-markdown.nvim',
         opts = {
-          file_types = { 'markdown', 'codecompanion' },
+          file_types = { 'markdown', 'Avante' },
         },
-        ft = { 'markdown', 'codecompanion' },
-      },
-    },
-    keys = {
-      {
-        '<leader>cc',
-        function()
-          local cc = require('codecompanion');
-          cc.toggle()
-        end,
-        desc = '[C]ode=[C]ompanion Chat',
+        ft = { 'markdown', 'Avante' },
       },
     },
   },
-  -- {
-  --   'yetone/avante.nvim',
-  --   event = 'VeryLazy',
-  --   version = false,
-  --   opts = {
-  --     provider = 'copilot',
-  --   },
-  --   build = (function()
-  --     if vim.loop.os_uname().sysname == "Windows_NT" then
-  --       return 'powershell -ExecutionPolicy Bypass -File Build.ps1 -BuildFromSource false'
-  --     else
-  --       return 'make'
-  --     end
-  --   end)(),
-  --   dependencies = {
-  --     'nvim-treesitter/nvim-treesitter',
-  --     'stevearc/dressing.nvim',
-  --     'nvim-lua/plenary.nvim',
-  --     'MunifTanjim/nui.nvim',
-  --     'nvim-telescope/telescope.nvim',
-  --     'hrsh7th/nvim-cmp',
-  --     'nvim-tree/nvim-web-devicons',
-  --     {
-  --       'MeanderingProgrammer/render-markdown.nvim',
-  --       opts = {
-  --         file_types = { 'markdown', 'Avante' },
-  --       },
-  --       ft = { 'markdown', 'Avante' },
-  --     },
-  --   },
-  -- },
   {
     'stevearc/conform.nvim',
     opts = function(_, opts)
