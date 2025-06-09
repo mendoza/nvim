@@ -20,7 +20,7 @@ return {
       provider = 'copilot',
     },
     build = (function()
-      if vim.loop.os_uname().sysname == "Windows_NT" then
+      if vim.loop.os_uname().sysname == 'Windows_NT' then
         return 'powershell -ExecutionPolicy Bypass -File Build.ps1 -BuildFromSource false'
       else
         return 'make'
@@ -57,9 +57,13 @@ return {
           require_cwd = true,
         },
       }
-      opts.formatters_by_ft = {
-        markdown = { 'markdownlint' },
-      }
+      opts.formatters_by_ft = vim.tbl_deep_extend('force', opts.formatters_by_ft, {
+        javascript = { 'biome', 'prettier' },
+        javascriptreact = { 'biome', 'prettier' },
+        typescript = { 'biome', 'prettier' },
+        typescriptreact = { 'biome', 'prettier' },
+        lua = { 'stylua' },
+      })
       return opts
     end,
   },
