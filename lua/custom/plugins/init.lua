@@ -46,25 +46,32 @@ return {
   {
     'stevearc/conform.nvim',
     opts = function(_, opts)
-      opts.formatters = {
-        biome = {
-          require_cwd = true,
-        },
-        prettier = {
-          require_cwd = true,
-        },
-        stylua = {
-          require_cwd = true,
-        },
+      local requireCwdConfig = {
+        require_cwd = true,
       }
-      opts.formatters_by_ft = vim.tbl_deep_extend('force', opts.formatters_by_ft, {
-        javascript = { 'biome', 'prettier' },
-        javascriptreact = { 'biome', 'prettier' },
-        typescript = { 'biome', 'prettier' },
-        typescriptreact = { 'biome', 'prettier' },
-        lua = { 'stylua' },
-      })
+      opts.formatters = {
+        biome = requireCwdConfig,
+        prettier = requireCwdConfig,
+        stylua = requireCwdConfig,
+      }
+      opts.format_on_save = nil
+      opts.formatters_by_ft['json'] = { 'biome', 'prettier' }
+      opts.formatters_by_ft['javascript'] = { 'biome', 'prettier' }
+      opts.formatters_by_ft['typescript'] = { 'biome', 'prettier' }
+      opts.formatters_by_ft['typescriptreact'] = { 'biome', 'prettier' }
+      opts.formatters_by_ft['javascriptreact'] = { 'biome', 'prettier' }
       return opts
+    end,
+  },
+  {
+    'rcarriga/nvim-notify',
+    config = function()
+      require('notify').setup {
+        stages = 'fade_in_slide_out',
+        background_colour = 'FloatShadow',
+        timeout = 3000,
+      }
+      vim.notify = require 'notify'
     end,
   },
 }
